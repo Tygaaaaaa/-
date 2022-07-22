@@ -1,0 +1,62 @@
+#include<stdio.h>
+#include<math.h>
+void print_left(int line,int j)//打印左边空格
+{
+	int i = 0;
+	for (i = 0; i < line - j; i++)
+	{
+		printf(" ");
+	}
+
+}
+void print_main(int line, int j)//打印主要组成部分
+{
+	int i = 0;
+	for (i = 0; i < j; i++)
+	{
+		printf("* ");
+	}
+}
+void print_right(int line)//打印右边空格
+{
+	int i = 0;
+	for (i = 0; i < line - 2; i++)
+	{
+		printf(" ");
+	}
+}
+void print_lozenge_upside(int line)//打印上半部分
+{
+	int i = 0;
+	for (i = 1; i <= line; i++)
+	{
+		int j = i;//j是当前行数
+		print_left(line,j);//传j控制空格打印
+		print_main(line,j);
+		print_right(line);
+		j++;
+		printf("\n");
+	}
+}
+void print_lozenge_underside(int line)//打印下半部分
+{
+	int i = 0;
+	for (i = line-1; i>0; i--)
+	{
+		int j = i;
+		print_left(line, j);
+		print_main(line, j);
+		print_right(line);
+		j++;
+		printf("\n");
+	}
+}
+int main()
+{
+	int line = 0;//行数
+	scanf("%d", &line);
+	print_lozenge_upside(line);
+	print_lozenge_underside(line);
+	return 0;
+}
+
