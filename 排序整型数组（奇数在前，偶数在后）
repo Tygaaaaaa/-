@@ -1,0 +1,89 @@
+#include<stdio.h>
+#define NUM 10
+//整理一个数组的数值，将奇数放在前面，偶数放在后面，并从小到大排序
+void move(int arr[], int sz)
+{
+	int left = 0;
+	int right = sz - 1;
+	while (left < right)
+	{
+		//从左边查找偶数
+		while ((left < right) && arr[left] % 2 == 1)
+		{
+			left++;  //此处的left<right条件并不冗余 防止找不到偶数循环停不下来而越界访问
+		}
+		//从右边查找奇数
+		while ((left < right) && arr[right] % 2 == 0)
+		{
+			right--; //此处left<right条件同上
+		}
+		if (left < right)//判断上方的left和right值变化了以后需不需要交换
+		{
+			int tmp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = tmp;
+		}
+	}
+}
+void bubble_sort(int arr[], int left,int right)
+{
+	int i = 0;
+	for (i = left; i < right; i++)
+	{
+		int j = 0;
+		int a = 0;
+		for (j = left; j < right-a; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				int tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+		}
+		a++;
+	}
+}
+void sort(int arr[], int sz)
+{
+	int i = 0;
+	while ((i < sz) && arr[i] % 2 == 1)
+	{
+		i++;
+	}
+	if (i != 0)//数组不全是奇数或偶数
+	{
+		i -= 1;
+		int left1 = 0;
+		int right1 = i;//奇数的左右下标
+		int left2 = i + 1;
+		int right2 = sz - 1;//偶数的左右下标
+		bubble_sort(arr, left1, right1);
+		bubble_sort(arr, left2, right2);
+	}
+}
+void print(int arr[], int sz)
+{
+	int i = 0;
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+}
+int main()
+{
+	printf("请输入想要排序的%d个数字，一数字一回车\n",NUM);
+	int i = 0;
+	int arr[NUM] = { 0 };
+	for (i = 0; i < NUM; i++)
+	{
+		printf("第%d个:>", i + 1);
+		scanf("%d", &arr[i]);
+	}
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	move(arr, sz);
+	sort(arr, sz);
+	print(arr, sz);
+	return 0;
+}
+
