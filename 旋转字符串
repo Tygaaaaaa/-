@@ -1,0 +1,60 @@
+//实现一个函数，可以左旋一个字符串中的k个字符
+#include<stdio.h>
+#include<string.h>                                          
+#include<assert.h>
+//————————————————————————————————————————三步翻转法
+//void reverse(char* left, char* right)
+//{
+//assert(left != NULL);
+//assert(right != NULL);
+//while (left < right)
+//{
+//	char tmp = *left;
+//	*left = *right;
+//	*right = tmp;
+//	left++;
+//	right--;
+//}
+//}
+//void left_move(char* arr, int k)
+//{
+//	assert(arr != NULL);
+//	int len = strlen(arr);
+//	assert(len <= 20);
+//	reverse(arr, arr + k - 1);//逆序左边
+//	reverse(arr + k, arr + len - 1);//逆序右边
+//	reverse(arr, arr + len - 1);//逆序整个字符串
+//}
+//————————————————————————————————————————暴力解法（一个一个换）
+//void left_move(char* arr, int k)
+//{
+//	assert(arr != NULL);
+//	int i = 0;
+//	int len = strlen(arr);
+//	assert(len <= 20);
+//	char tmp = 0;
+//	//旋转k次
+//	for (i = 0; i < k; i++)
+//	{
+//		//旋转一次
+//		tmp = *arr;
+//		int j = 0;
+//		for (j = 0; j < len - 1; j++)
+//		{
+//			*(arr + j) = *(arr + j + 1);
+//		}
+//		*(arr + len - 1) = tmp;
+//	}
+//}
+int main()
+{
+	char arr[20] = { 0 };
+	int k = 0;
+	printf("请输入一串纯英文字符(20个以内):>");
+	gets(arr);
+	printf("想要向左旋转几个字符:>");
+	scanf("%d", &k);
+	left_move(arr, k);
+	printf("旋转后:>%s\n", arr);
+	return 0;
+}
