@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<string.h>                                          
 #include<assert.h>
-//————————————————————————————————————————三步翻转法
+//——————————————————————————————————————————三步翻转法
 //void reverse(char* left, char* right)
 //{
 //assert(left != NULL);
