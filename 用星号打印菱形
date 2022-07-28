@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include<stdio.h> 
 void print_left(int line,int j)//打印左边空格
 {
 	int i = 0;
