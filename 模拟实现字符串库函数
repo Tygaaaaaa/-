@@ -1,0 +1,48 @@
+//模拟实现strlen,strcmp,strcat
+#include<stdio.h>
+#include<string.h>
+#include<assert.h>
+int my_strlen(char* str)
+{
+	assert(str);
+	int count = 0;
+	while (*str++)
+	{
+		count++;
+	}
+	return count;
+}
+char* my_strcmp(char* dest, const char* src)
+{
+	assert(dest && src);
+	char* ret = dest; //保存字符串首元素的地址
+	while (*dest++ = *src++)//*dest的结果就是表达式的结果
+	{
+		;
+	}
+	return ret;
+}
+char* my_strcat(char* dest, const char* src)
+{
+	assert(dest && src);
+	char* ret = dest;
+	while (*dest!='\0')//不能写成*dest++这样就跳过了\0
+	{
+		dest++;//找到'\0'
+	}
+	while (*dest++ = *src++)
+	{
+		;//追加字符串
+	}
+	return ret;
+}
+int main()
+{
+	char arr1[30] = { "abcdef" };
+	char arr2[] = { "ghi" };
+	char arr3[30] = {"abcdef"};
+	printf("arr1的字符串长度是%d\n", my_strlen(arr1));
+	printf("arr1==%s\n", my_strcmp(arr1, arr2));
+	printf("arr3==%s\n", my_strcat(arr3,arr2));
+	return 0;
+}
