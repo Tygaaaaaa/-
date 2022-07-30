@@ -1,7 +1,53 @@
-//模拟实现strlen,strcmp,strcat
+//模拟实现strlen,strcpy,strcat,strcmp，strncpy,strncat
 #include<stdio.h>
 #include<string.h>
 #include<assert.h>
+char* my_strncat(char* dest, const char* src, size_t count)
+{
+	assert(dest && src);
+	char* ret = dest;
+	while (*dest++)
+	{
+		;
+	}
+	dest--;
+	while (count--)
+	{
+		if (!(*dest++ = *src++))//追加到\0则返回ret，追加到字符则循环继续
+			return ret;
+	}
+	*dest = '\0';//src没有被整个追加要补'\0'
+	return ret;
+}
+char* my_strncpy(char* dest, const char* src, size_t count)
+{
+	assert(dest && src);
+	char* ret = dest;
+	while (count && (*dest++ = *src++))
+	{
+		count--;
+	}
+	if (count)
+	{
+		while (--count)//追加到num个'\0'
+		{
+			*dest++ = '\0';
+		}
+	}
+	return ret;
+}
+int my_strcmp(const char* p1, const char* p2)
+{
+	assert(p1 && p2);
+	while (*p1 == p2)
+	{
+		if (*p1 == 0)
+			return 0;
+		p1++;
+		p2++;
+	}
+	return *p1 - *p2;
+}
 int my_strlen(char* str)
 {
 	assert(str);
@@ -12,7 +58,7 @@ int my_strlen(char* str)
 	}
 	return count;
 }
-char* my_strcmp(char* dest, const char* src)
+char* my_strcpy(char* dest, const char* src)
 {
 	assert(dest && src);
 	char* ret = dest; //保存字符串首元素的地址
@@ -38,11 +84,22 @@ char* my_strcat(char* dest, const char* src)
 }
 int main()
 {
-	char arr1[30] = { "abcdef" };
-	char arr2[] = { "ghi" };
-	char arr3[30] = {"abcdef"};
+	char arr1[30] ="abcdef";
+	char arr2[] = "ghi";
+	char arr3[30] = "abcdef";
+	char* p1 = "abcdef";
+	char* p2 = "qwert";
+	char a1[30] = "abcdef";
+	char a2[] = "acd";
+	char b1[30] = "hello";
+	char b2[] = " world";
 	printf("arr1的字符串长度是%d\n", my_strlen(arr1));
-	printf("arr1==%s\n", my_strcmp(arr1, arr2));
+	printf("arr1==%s\n", my_strcpy(arr1, arr2));
 	printf("arr3==%s\n", my_strcat(arr3,arr2));
+	printf("p1-p2=%d\n", my_strcmp(p1, p2));
+	printf("a1=%s\n", my_strncpy(a1, a2,2));
+	printf("b1=%s\n", my_strncat(b1,b2,6));
 	return 0;
 }
+
+
