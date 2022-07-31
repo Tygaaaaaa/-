@@ -1,7 +1,18 @@
-//模拟实现strlen,strcpy,strcat,strcmp，strncpy,strncat
+//模拟实现strlen,strcpy,strcat,strcmp,strncpy,strncat,strncmp
 #include<stdio.h>
 #include<string.h>
 #include<assert.h>
+int my_strncmp(const char* p1, const char* p2,size_t count)
+{
+	assert(p1 && p2);
+	while (count-- && (*p1 == *p2))
+	{
+		p1++;
+		p2++;
+	}
+	return *p1 - *p2;
+
+}
 char* my_strncat(char* dest, const char* src, size_t count)
 {
 	assert(dest && src);
@@ -39,7 +50,7 @@ char* my_strncpy(char* dest, const char* src, size_t count)
 int my_strcmp(const char* p1, const char* p2)
 {
 	assert(p1 && p2);
-	while (*p1 == p2)
+	while (*p1 ==*p2)
 	{
 		if (*p1 == 0)
 			return 0;
@@ -88,7 +99,7 @@ int main()
 	char arr2[] = "ghi";
 	char arr3[30] = "abcdef";
 	char* p1 = "abcdef";
-	char* p2 = "qwert";
+	char* p2 = "abcdg";
 	char a1[30] = "abcdef";
 	char a2[] = "acd";
 	char b1[30] = "hello";
@@ -99,7 +110,7 @@ int main()
 	printf("p1-p2=%d\n", my_strcmp(p1, p2));
 	printf("a1=%s\n", my_strncpy(a1, a2,2));
 	printf("b1=%s\n", my_strncat(b1,b2,6));
+	printf("p1-p1=%d\n", my_strncmp(p1, p2, 5));
 	return 0;
 }
-
 
