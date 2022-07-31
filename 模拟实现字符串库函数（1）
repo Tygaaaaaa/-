@@ -1,4 +1,4 @@
-//模拟实现strlen,strcpy,strcat,strcmp,strncpy,strncat,strncmp
+//模拟实现strlen,strcpy,strcat,strcmp,strncpy,strncat,strncmp 
 #include<stdio.h>
 #include<string.h>
 #include<assert.h>
